@@ -1,6 +1,4 @@
-Expand
-fs.kt
-4 KB
+
 import isel.leic.UsbPort
 
 object HAL { // Virtualiza o acesso ao sistema UsbPort
