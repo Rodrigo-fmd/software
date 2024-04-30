@@ -4,8 +4,20 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
     fun init(){
         TODO()
     }
-// Envia uma trama para o SerialReceiver identificado o destino em addr,os bits de dados em ‘data’ e em size o número de bits a enviar.
+    // Envia a trama para o módulo destino
     fun send(addr: Destination, data: Int, size : Int){
-        TODO()
+        when(addr) {
+            Destination.LCD -> {
+                // Convert the data to a binary string
+                val binaryString = data.toString(2).padStart(size, '0')
+                // Send each bit to the LCD module
+                LCD.write(binaryString)
+
+            }
+            Destination.SCORE -> {
+                // Handle the case when the destination is SCORE
+                // This will depend on how your SCORE module is set up
+            }
+        }
     }
 }
