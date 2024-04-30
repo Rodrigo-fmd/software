@@ -1,7 +1,7 @@
 object ScoreDisplay { // Controla o mostrador de pontuação.
     // Inicia a classe, estabelecendo os valores iniciais.
     fun init(){
-        TODO()
+        setScore(0)
     }
     // Envia comando para atualizar o valor do mostrador de pontuação
     fun setScore(value: Int){

@@ -16,7 +16,6 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
             }
             Destination.SCORE -> {
                 // Handle the case when the destination is SCORE
-                // This will depend on how your SCORE module is set up
             }
         }
     }
