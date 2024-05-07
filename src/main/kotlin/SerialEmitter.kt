@@ -8,10 +8,9 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
     fun send(addr: Destination, data: Int, size : Int){
         when(addr) {
             Destination.LCD -> {
-                // Convert the data to a binary string
-                val binaryString = data.toString(2).padStart(size, '0')
-                // Send each bit to the LCD module
-                LCD.write(binaryString)
+                val mask = 1 shl size
+                mask.inv()
+                HAL.writeBits(mask, data)
 
             }
             Destination.SCORE -> {
