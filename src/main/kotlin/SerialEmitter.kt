@@ -2,7 +2,8 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
     enum class Destination {LCD, SCORE}
     // Inicia a classe
     fun init(){
-        TODO()
+        SerialEmitter.send(SerialEmitter.Destination.SCORE, 0, 1)
+        SerialEmitter.send(SerialEmitter.Destination.LCD, 0, 1)
     }
     // Envia a trama para o módulo destino
     fun send(addr: Destination, data: Int, size : Int){
@@ -11,7 +12,7 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
 
         when(addr) {
             Destination.LCD -> {
-                HAL.writeBits(data, mask)
+                HAL.writeBits(mask, data)
             }
             Destination.SCORE -> {
                 HAL.writeBits(mask, data)
