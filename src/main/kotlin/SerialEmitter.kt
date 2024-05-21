@@ -6,15 +6,15 @@ object SerialEmitter { // Envia tramas para os diferentes módulos Serial Receiv
     }
     // Envia a trama para o módulo destino
     fun send(addr: Destination, data: Int, size : Int){
+
+        val mask = (1 shl size).inv()
+
         when(addr) {
             Destination.LCD -> {
-                val mask = 1 shl size
-                mask.inv()
-                HAL.writeBits(mask, data)
-
+                HAL.writeBits(data, mask)
             }
             Destination.SCORE -> {
-                // Handle the case when the destination is SCORE
+                HAL.writeBits(mask, data)
             }
         }
     }

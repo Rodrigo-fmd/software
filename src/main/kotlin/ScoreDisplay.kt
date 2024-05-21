@@ -5,14 +5,18 @@ object ScoreDisplay { // Controla o mostrador de pontuação.
     }
     // Envia comando para atualizar o valor do mostrador de pontuação
     fun setScore(value: Int){
-        TODO()
+        // Convert the score to a binary representation
+        // Send the binary score to the score display using the SerialEmitter
+        SerialEmitter.send(SerialEmitter.Destination.SCORE, value, value.toString(2).length)
     }
     // Envia comando para desativar/ativar a visualização do mostrador de pontuação
     fun off(value: Boolean){
         if(value){
-            TODO()
+            // Send a command to turn off the score display
+            SerialEmitter.send(SerialEmitter.Destination.SCORE, 0, 0)
         } else {
-            TODO()
+            // Send a command to turn on the score display
+            SerialEmitter.send(SerialEmitter.Destination.SCORE, 1, 0)
         }
     }
 }
