@@ -10,15 +10,19 @@ object LCD { // Escreve no LCD usando a interface a 4 bits.
     // Escreve um byte de comando/dados no LCD em paralelo
     private fun writeByteParallel(rs: Boolean, data: Int) {
         if (!rs) {
-            HAL.setBits(data)
-        }
+            HAL.clrBits(RS)
+        } else HAL.setBits(RS)
+        HAL.writeBits(0xFF,data)
+
     }
 
     // Escreve um byte de comando/dados no LCD em série
     private fun writeByteSerial(rs: Boolean, data: Int) {
-        if (rs) {
-            HAL.setBits(data)
-        }
+        if (!rs) {
+            HAL.clrBits(RS)
+        } else HAL.setBits(RS)
+
+        SerialEmitter.send(SerialEmitter.Destination.LCD, data, 8)
     }
 
     // Escreve um byte de comando/dados no LCD
@@ -34,7 +38,9 @@ object LCD { // Escreve no LCD usando a interface a 4 bits.
 
     // Escreve um dado no LCD
     private fun writeDATA(data: Int) {
-        writeByteParallel(true, data)
+        if (SERIAL_INTERFACE) {
+            writeByteParallel(true, data)
+        } else writeByteSerial(true, data)
     }
 
     // Envia a sequência de iniciação para comunicação a 4 bits.
