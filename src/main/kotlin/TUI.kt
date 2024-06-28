@@ -2,6 +2,7 @@ import isel.leic.utils.Time
 
 fun main() {
     HAL.init()
+    ScoreDisplay.init()
     HAL.setBits(0x02)
     HAL.clrBits(0x02)
     HAL.writeBits(0x08, 0x03)

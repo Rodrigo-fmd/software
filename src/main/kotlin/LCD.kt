@@ -2,7 +2,7 @@ import isel.leic.UsbPort
 import isel.leic.utils.*
 
 object LCD { // Escreve no LCD usando a interface a 4 bits.
-
+    private const val RS = 0x01
     private const val LINES = 2
     private const val COLS = 16; // Dimensão do display.
     private const val SERIAL_INTERFACE = false // Define se a interface é Série ou Paralela

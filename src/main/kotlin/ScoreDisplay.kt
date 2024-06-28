@@ -11,12 +11,9 @@ object ScoreDisplay { // Controla o mostrador de pontuação.
     }
     // Envia comando para desativar/ativar a visualização do mostrador de pontuação
     fun off(value: Boolean){
-        if(value){
-            // Send a command to turn off the score display
-            SerialEmitter.send(SerialEmitter.Destination.SCORE, 1, 1)
-        } else {
-            // Send a command to turn on the score display
-            SerialEmitter.send(SerialEmitter.Destination.SCORE, 0, 1)
+        when(value){
+            true -> SerialEmitter.send(SerialEmitter.Destination.SCORE, 0x71, 7)
+            false -> SerialEmitter.send(SerialEmitter.Destination.SCORE, 0x70, 7)
         }
     }
 }
